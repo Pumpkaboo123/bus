@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Transit - Presentation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0f172a; color: #e2e8f0; overflow: hidden; }
+
+        /* Slide Container */
+        .slide {
+            display: none; width: 100vw; height: 100vh;
+            flex-direction: column; justify-content: center; align-items: center;
+            padding: 60px 100px; text-align: center; position: relative;
+        }
+        .slide.active { display: flex; }
+
+        /* Backgrounds */
+        .bg-dark { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); }
+        .bg-blue { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .bg-green { background: linear-gradient(135deg, #064e3b 0%, #10b981 100%); }
+        .bg-purple { background: linear-gradient(135deg, #3b0764 0%, #8b5cf6 100%); }
+        .bg-orange { background: linear-gradient(135deg, #7c2d12 0%, #f97316 100%); }
+        .bg-teal { background: linear-gradient(135deg, #134e4a 0%, #14b8a6 100%); }
+        .bg-rose { background: linear-gradient(135deg, #4c0519 0%, #f43f5e 100%); }
+
+        /* Typography */
+        h1 { font-size: 4rem; font-weight: 800; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+        h2 { font-size: 2.8rem; font-weight: 700; margin-bottom: 30px; }
+        h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; opacity: 0.9; }
+        p, li { font-size: 1.4rem; line-height: 2; }
+        .subtitle { font-size: 1.6rem; opacity: 0.8; margin-bottom: 40px; }
+        .emoji-big { font-size: 5rem; margin-bottom: 25px; }
+
+        /* Lists */
+        ul { list-style: none; text-align: left; max-width: 800px; }
+        ul li { padding: 8px 0; font-size: 1.35rem; }
+        ul li::before { content: '→ '; color: #60a5fa; font-weight: 700; }
+
+        /* Code */
+        pre {
+            background: rgba(0,0,0,0.4); color: #a5f3fc;
+            padding: 25px 30px; border-radius: 16px;
+            text-align: left; font-size: 1.05rem;
+            max-width: 850px; width: 100%;
+            overflow-x: auto; line-height: 1.6;
+            font-family: 'Consolas', monospace;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Tables */
+        table {
+            border-collapse: collapse; margin: 20px 0;
+            font-size: 1.15rem; max-width: 900px; width: 100%;
+        }
+        th { background: rgba(255,255,255,0.15); padding: 14px 20px; text-align: left; font-weight: 700; border-radius: 8px 8px 0 0; }
+        td { padding: 12px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        tr:hover td { background: rgba(255,255,255,0.05); }
+
+        /* Grid */
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; text-align: left; }
+        .grid-item {
+            background: rgba(255,255,255,0.08); padding: 25px;
+            border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .grid-item h3 { font-size: 1.3rem; margin-bottom: 10px; }
+        .grid-item p { font-size: 1.1rem; opacity: 0.85; }
+
+        /* Seat demo */
+        .seat-demo { display: flex; gap: 15px; justify-content: center; margin: 20px 0; }
+        .seat-box { width: 50px; height: 50px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; }
+        .seat-green { background: #10b981; color: white; }
+        .seat-blue { background: #3b82f6; color: white; }
+        .seat-grey { background: #64748b; color: white; }
+        .seat-empty { background: transparent; border: 2px dashed rgba(255,255,255,0.2); }
+
+        /* Navigation */
+        .nav {
+            position: fixed; bottom: 30px; right: 40px;
+            display: flex; gap: 12px; z-index: 100;
+        }
+        .nav button {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            font-size: 1.2rem; cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: 0.2s;
+        }
+        .nav button:hover { background: rgba(255,255,255,0.3); transform: scale(1.1); }
+
+        /* Progress */
+        .progress {
+            position: fixed; top: 0; left: 0; height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: width 0.4s ease; z-index: 100;
+        }
+
+        /* Slide counter */
+        .counter {
+            position: fixed; bottom: 35px; left: 40px;
+            font-size: 1rem; opacity: 0.5;
+        }
+
+        /* Cover decoration */
+        .cover-line { width: 100px; height: 5px; background: linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius: 3px; margin: 30px auto; }
+
+        /* Highlight */
+        .highlight { color: #60a5fa; font-weight: 700; }
+        .highlight-green { color: #34d399; font-weight: 700; }
+        .highlight-yellow { color: #fbbf24; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    <div class="counter" id="counter"></div>
+
+    <!-- ====== SLIDE 1: COVER ====== -->
+    <div class="slide bg-dark active">
+        <div class="emoji-big">🚌</div>
+        <h1>Smart Transit</h1>
+        <p class="subtitle">Real-Time Bus Tracking & Booking System</p>
+        <div class="cover-line"></div>
+        <p style="opacity:0.5; font-size:1.1rem;">Minor Project • 2026 • github.com/Pumpkaboo123/bus</p>
+    </div>
+
+    <!-- ====== SLIDE 2: PROBLEM ====== -->
+    <div class="slide bg-rose">
+        <h2>😤 The Problem</h2>
+        <ul>
+            <li>People <span class="highlight-yellow">don't know where the bus is</span> or when it will arrive</li>
+            <li>Long queues just to buy a simple ticket</li>
+            <li>No way to <span class="highlight-yellow">reserve a seat</span> in advance</li>
+            <li>Bus operators have <span class="highlight-yellow">no digital tools</span> to manage their fleet</li>
+        </ul>
+    </div>
+
+    <!-- ====== SLIDE 3: SOLUTION ====== -->
+    <div class="slide bg-green">
+        <h2>💡 Our Solution</h2>
+        <p style="font-size:1.5rem; max-width:800px; margin-bottom:30px;">
+            A <span class="highlight-yellow">web application</span> where you can see buses on a live map,
+            pick your seat, and get a QR ticket — all in <span class="highlight-yellow">real time!</span>
+        </p>
+        <p style="font-size:1.2rem; opacity:0.8;">Think of it like <strong>Uber, but for city buses.</strong></p>
+    </div>
+
+    <!-- ====== SLIDE 4: TECH STACK ====== -->
+    <div class="slide bg-blue">
+        <h2>🛠️ Technology Stack</h2>
+        <div class="grid">
+            <div class="grid-item"><h3>🖥️ React.js</h3><p>Builds the user interface — buttons, pages, forms.</p></div>
+            <div class="grid-item"><h3>⚙️ Node.js</h3><p>The "brain" — handles login, booking, and tracking logic.</p></div>
+            <div class="grid-item"><h3>💾 MongoDB</h3><p>The "memory" — stores users, buses, and bookings.</p></div>
+            <div class="grid-item"><h3>📡 Socket.io</h3><p>Live updates — sends bus positions every 3 seconds.</p></div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 5: HOW IT WORKS ====== -->
+    <div class="slide bg-purple">
+        <h2>⚡ How It Works</h2>
+        <ul>
+            <li><span class="highlight">Step 1:</span> User opens the website & logs in</li>
+            <li><span class="highlight">Step 2:</span> They see a sidebar with bus cards + a live map</li>
+            <li><span class="highlight">Step 3:</span> Click "TRACK" → map follows the bus</li>
+            <li><span class="highlight">Step 4:</span> Click "BOOK NOW" → pick seats on a grid</li>
+            <li><span class="highlight">Step 5:</span> Confirm → get a ticket with a QR code</li>
+            <li><span class="highlight">Step 6:</span> Print the ticket or show it on your phone!</li>
+        </ul>
+    </div>
+
+    <!-- ====== SLIDE 6: SEAT SELECTION ====== -->
+    <div class="slide bg-teal">
+        <h2>💺 Seat Selection</h2>
+        <p style="margin-bottom:20px;">Users pick seats from a color-coded grid:</p>
+        <div class="seat-demo">
+            <div class="seat-box seat-green">🟢</div>
+            <div class="seat-box seat-green">🟢</div>
+            <div class="seat-box seat-empty"></div>
+            <div class="seat-box seat-blue">🔵</div>
+            <div class="seat-box seat-grey">⬜</div>
+        </div>
+        <div style="display:flex; gap:40px; justify-content:center; margin-top:15px; font-size:1.15rem;">
+            <span><span class="highlight-green">🟢 Available</span></span>
+            <span><span class="highlight">🔵 Your Selection</span></span>
+            <span style="opacity:0.7">⬜ Already Booked</span>
+        </div>
+        <p style="margin-top:25px; opacity:0.8;">Seats update in <strong>real-time</strong> — if someone else books, it turns grey instantly!</p>
+    </div>
+
+    <!-- ====== SLIDE 7: DATABASE ====== -->
+    <div class="slide bg-orange">
+        <h2>💾 Database Design</h2>
+        <table>
+            <tr><th>Collection</th><th>Key Fields</th><th>Purpose</th></tr>
+            <tr><td>👤 Users</td><td>username, password, isAdmin, bookings</td><td>Stores accounts & tickets</td></tr>
+            <tr><td>🚌 Buses</td><td>busId, name, origin, destination, lat/lng, seats</td><td>Stores fleet & positions</td></tr>
+        </table>
+        <p style="margin-top:15px;">Seats are stored as a <span class="highlight-yellow">2D number grid:</span><br>
+        <code style="font-size:1.2rem; color:#fbbf24;">1 = empty, 2 = booked, 0 = aisle</code></p>
+    </div>
+
+    <!-- ====== SLIDE 8: LIVE TRACKING CODE ====== -->
+    <div class="slide bg-dark">
+        <h2>📡 Live Tracking Code</h2>
+        <h3>Every 3 seconds, buses move on the map:</h3>
+<pre>setInterval(async () => {
+    const buses = await Bus.find({});
+    for (let bus of buses) {
+        bus.lat += (Math.random() - 0.5) * 0.002;
+        bus.lng += (Math.random() - 0.5) * 0.002;
+        await bus.save();
+    }
+    // Tell ALL users about new positions
+    io.emit('bus_locations_updated', buses);
+}, 3000);  // Runs every 3 seconds</pre>
+    </div>
+
+    <!-- ====== SLIDE 9: LOGIN CODE ====== -->
+    <div class="slide bg-blue">
+        <h2>🔐 Login System Code</h2>
+<pre>socket.on('login', async (data) => {
+    const user = await User.findOne({
+        username: data.username,
+        password: data.password
+    });
+
+    if (user) {
+        socket.emit('auth_success', user);  // ✅ Welcome!
+    } else {
+        socket.emit('auth_error', 'Wrong details'); // ❌
+    }
+});</pre>
+    </div>
+
+    <!-- ====== SLIDE 10: FEATURES ====== -->
+    <div class="slide bg-purple">
+        <h2>✨ Key Features</h2>
+        <div class="grid">
+            <div class="grid-item"><h3>🗺️ Live Map</h3><p>Buses move in real-time using Leaflet.js maps.</p></div>
+            <div class="grid-item"><h3>🎫 QR Tickets</h3><p>Every booking generates a scannable QR code.</p></div>
+            <div class="grid-item"><h3>🌙 Dark Mode</h3><p>Full dark theme — even the map goes dark!</p></div>
+            <div class="grid-item"><h3>⚙️ Admin Panel</h3><p>Add/edit/delete buses & manage user accounts.</p></div>
+        </div>
+    </div>
+
+    <!-- ====== SLIDE 11: UI DESIGN ====== -->
+    <div class="slide bg-teal">
+        <h2>🎨 UI Design</h2>
+        <ul>
+            <li><span class="highlight-green">Glassmorphism</span> — frosted glass panels with blur effects</li>
+            <li><span class="highlight-green">Animated Gradients</span> — login background shifts colors</li>
+            <li><span class="highlight-green">Outfit Font</span> — modern geometric typeface from Google Fonts</li>
+            <li><span class="highlight-green">Hover Animations</span> — cards lift and glow on mouse hover</li>
+            <li><span class="highlight-green">Floating Admin Button</span> — fixed in the bottom-right corner</li>
+        </ul>
+    </div>
+
+    <!-- ====== SLIDE 12: FUTURE ====== -->
+    <div class="slide bg-orange">
+        <h2>🔮 Future Improvements</h2>
+        <ul>
+            <li>📍 Real GPS data from actual buses</li>
+            <li>💳 Online payment (UPI / Razorpay)</li>
+            <li>📲 Mobile app (React Native)</li>
+            <li>🔔 Push notifications for bus arrivals</li>
+            <li>🔒 Password encryption (bcrypt)</li>
+            <li>📊 Admin analytics dashboards</li>
+        </ul>
+    </div>
+
+    <!-- ====== SLIDE 13: THANK YOU ====== -->
+    <div class="slide bg-dark">
+        <div class="emoji-big">🎉</div>
+        <h1>Thank You!</h1>
+        <p class="subtitle">Any Questions?</p>
+        <div class="cover-line"></div>
+        <p style="opacity:0.5; font-size:1.1rem;">🌐 github.com/Pumpkaboo123/bus</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <button onclick="changeSlide(-1)">◀</button>
+        <button onclick="changeSlide(1)">▶</button>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            current = (n + total) % total;
+            slides[current].classList.add('active');
+            document.getElementById('progress').style.width = ((current / (total - 1)) * 100) + '%';
+            document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+        }
+
+        function changeSlide(dir) { showSlide(current + dir); }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'f' || e.key === 'F') {
+                document.documentElement.requestFullscreen?.() ||
+                document.documentElement.webkitRequestFullscreen?.();
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>

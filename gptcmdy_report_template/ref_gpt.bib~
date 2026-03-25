@@ -1,0 +1,33 @@
+
+
+
+
+
+@article{test,
+	author = {write1 and writer2 and writer3},
+	journal = {Information Theory, IEEE Transactions on},
+	number = {2},
+	pages = {489--509},
+	publisher = {IEEE},
+	title = {Topic of the Paper},
+	volume = {52},
+	year = {2006}
+}
+
+@inproceedings{zhu2011fast,
+	author = {Y. Zhu and I. Chern and others},
+	booktitle = {Image and Graphics (ICIG), 2011 Sixth International Conference on},
+	organization = {IEEE},
+	pages = {356--361},
+	title = {Fast Alternating Minimization Method for Compressive Sensing MRI under Wavelet Sparsity and TV Sparsity},
+	year = {2011}
+}
+@book{book_convex,
+	author = {S. Boyd and L. Vandenberghe},
+	institution = {Cambridge University},
+	isbn = {0 521 83378 7
+},
+	publisher = {Cambridge University Press},
+	title = {Convex Optimization},
+	year = {2004}
+}

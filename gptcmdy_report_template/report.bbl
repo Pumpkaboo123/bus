@@ -1,0 +1,65 @@
+\begin{thebibliography}{10}
+
+\bibitem{one}
+J.~Burroughs, ``X-10 home automation using the pic16f877a,'' {\em Microchip
+  Application notes on X-10 Home Automation Using the PIC16F877A}, vol.~1,
+  no.~AN236, pp.~1--26, 2010.
+
+\bibitem{two}
+K.~Gill, S.-H. Yang, F.~Yao, and X.~Lu, ``A zigbee-based home automation
+  system,'' {\em Transactions on Consumer Electronics}, vol.~55, no.~2,
+  pp.~422--430, 2009.
+
+\bibitem{three}
+H.~Khan, Rafiqu, I.~andDr Othman~0Khalifa, J.~Omar, A.~Hassan, and I.~Adam,
+  ``Communication system for controlling smart appliances using power line
+  communication,'' in {\em Information and Communication Technologies, 2006.
+  ICTTA '06. 2nd}, pp.~2595 -- 2600, IEEE, 2006.
+
+\bibitem{four}
+R.~A. Rashid, M.~A. Sarijari, M.~R.~A. Rahim, and T.~Z. Yang, ``Flood
+  transmission based protocol for home automation system via power line
+  communication,'' in {\em International Conference on Computer and
+  Communication Engineering}, pp.~867 -- 870, IEEE, 2008.
+
+\bibitem{five}
+B.~S. Park, C.~S. Kang, and E.~J. Lim, ``Automatic repeat protocol for
+  distribution automation system through powerline communication,'' in {\em
+  International Symposium on Power Line Communications and Its Applications,},
+  pp.~316 -- 321, IEEE, 2008.
+
+\bibitem{six}
+J.~Ahn, J.~Heo, S.~Lim, and W.~Kim, ``A study of iso/ieee1073 platform based on
+  power line communication,'' in {\em Proceedings of 14th Asia-Pacific
+  Conference on Communications,}, pp.~1 -- 4, IEEE, 2008.
+
+\bibitem{seven}
+A.~T. Sherman, D.~Phatak, B.~Sonawane, and V.~G. Relan, ``Location
+  authentication through power line communication: Design, protocol, and
+  analysis of a new out-of-band strategy,'' in {\em International Symposium
+  onPower Line Communications and Its Applications (ISPLC)}, pp.~279 -- 284,
+  IEEE, 2010.
+
+\bibitem{eight}
+S.~Eom, H.-M. Oh, T.~Jeon, Y.~Kim, J.-J. Lee, and S.~C. andYoung Chai~Ko,
+  ``Physical layer certification system of power line communication korea
+  standard,'' in {\em International Symposium onPower Line Communications and
+  Its Applications}, pp.~325 -- 330, IEEE, 2009.
+
+\bibitem{nine}
+C.~D and J.~T, ``Narrowband, low data rate communications on the low-voltage
+  mains in the cenelec frequencies. multiplicative signal fading and efficient
+  modulation schemes,'' {\em Transactions on Power Delivery}, vol.~17, no.~3,
+  pp.~724 -- 729, 2002.
+
+\bibitem{ten}
+R.~S, A.~M, and H.~A, ``Mv and lv powerline communications: new proposed iec
+  standards,'' in {\em Transmission and Distribution Conference}, pp.~235 --
+  239, IEEE, 1999.
+
+\bibitem{eleven}
+C.~V and S.~N, ``Effects of power lines on performance of home control
+  system,'' in {\em International Conference on Power Electronics, Drives and
+  Energy Systems}, pp.~1 -- 6, IEEE, 2006.
+
+\end{thebibliography}
